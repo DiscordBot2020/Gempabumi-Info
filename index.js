@@ -10,16 +10,15 @@ const bot = new aoijs.Bot({
 
 bot.onMessage();
 
-//-- uncomment jika kamu ingin menambahkan status di bot --
-// bot.status({
-//   text: "text",
-//   type: "PLAYING",
-//   time: 12
-// })
+bot.status({
+  text: "My Crush ❤️",
+  type: "WATCHING",
+  time: 12
+})
 
 bot.command({
-  name: "ping",
-  code: `My Ping Is \`$ping ms\` `,
+  name: "serverping",
+  code: `Ping Server KucingSMP ke Discord Adalah \`$ping ms\` `,
 });
 
 bot.loopCommand({
@@ -34,7 +33,7 @@ bot.loopCommand({
 if(obj.date !== "$getObjectProperty[Infogempa.gempa.DateTime]") {
   const exampleEmbed = new Discord.MessageEmbed()
     .setColor(Math.floor(Math.random() * 16777215))
-    .setTitle(':warning: Telah Terjadi Gempa Bumi :warning: ')
+    .setTitle(':warning: Gempabumi Dirasakan :warning: ')
     .addFields(
         { name: 'Waktu Gempa', value: '$getObjectProperty[Infogempa.gempa.Tanggal], $getObjectProperty[Infogempa.gempa.Jam]', inline: true },
         { name: 'Magnitudo', value: '$getObjectProperty[Infogempa.gempa.Magnitude]', inline: true },
@@ -47,9 +46,9 @@ if(obj.date !== "$getObjectProperty[Infogempa.gempa.DateTime]") {
     )
     .setImage('https://data.bmkg.go.id/DataMKG/TEWS/$getObjectProperty[Infogempa.gempa.Shakemap]')
     .setTimestamp()
-    .setFooter({ text: 'Powered by BMKG' });
+    .setFooter({ text: 'Data by BMKG | KucingSMP' });
 
-channel.send({ content: '@everyone', embeds: [exampleEmbed] }).then(() => {
+channel.send({ content: '**Informasi Gempa Terkini**', embeds: [exampleEmbed] }).then(() => {
 
   const write = {
     date: "$getObjectProperty[Infogempa.gempa.DateTime]"
